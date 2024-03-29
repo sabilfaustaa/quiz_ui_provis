@@ -9,24 +9,7 @@ class Jawaban1Page extends StatelessWidget {
         body: SingleChildScrollView(
             child: Stack(
       children: [
-        Container(
-          width: double.infinity,
-          height: 200,
-          decoration: BoxDecoration(
-            color: Colors.amber[400],
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-          ),
-          child: Card(
-            color: Colors.transparent,
-            elevation: 0,
-            child: Padding(
-              padding: EdgeInsets.all(16),
-            ),
-          ),
-        ),
+        BackgroundCircular(),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
           child: Column(
@@ -80,55 +63,11 @@ class Jawaban1Page extends StatelessWidget {
                         SizedBox(
                           height: 20,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Nama Depan',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                isDense: true,
-                                contentPadding:
-                                    EdgeInsets.only(top: 8, bottom: 8),
-                              ),
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                              onChanged: (value) {},
-                            ),
-                          ],
-                        ),
+                        InputTextField(title: 'Nama Depan'),
                         SizedBox(
-                          height: 8,
+                          height: 15,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Nama Belakang',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                isDense: true,
-                                contentPadding:
-                                    EdgeInsets.only(top: 8, bottom: 8),
-                              ),
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                              onChanged: (value) {},
-                            ),
-                          ],
-                        ),
+                        InputTextField(title: 'Nama Belakang'),
                         SizedBox(
                           height: 25,
                         ),
@@ -197,52 +136,11 @@ class Jawaban1Page extends StatelessWidget {
                         SizedBox(
                           height: 20,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Alamat',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                isDense: true,
-                                contentPadding:
-                                    EdgeInsets.only(top: 8, bottom: 8),
-                              ),
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                              onChanged: (value) {},
-                            ),
-                          ],
-                        ),
+                        InputTextField(title: 'Alamat'),
                         SizedBox(
                           height: 60,
                         ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          width: MediaQuery.of(context).size.width * 0.40,
-                          height: 40,
-                          child: OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              backgroundColor: Colors.amber[400],
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(17),
-                              ),
-                              side: BorderSide(color: Colors.black),
-                            ),
-                            onPressed: () {},
-                            child: Text(
-                              "Simpan",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        )
+                        ButtonSubmit(),
                       ],
                     ),
                   ),
@@ -253,5 +151,97 @@ class Jawaban1Page extends StatelessWidget {
         )
       ],
     )));
+  }
+}
+
+// REUSABLE WIDGET :
+// memungkinkan untuk digunakan bila pengembangan aplikasi mulai kompleks
+// dapat digunakan di halaman-halaman lain supaya konsisten juga
+
+class BackgroundCircular extends StatelessWidget {
+  const BackgroundCircular({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 200,
+      decoration: BoxDecoration(
+        color: Colors.amber[400],
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+      ),
+      child: Card(
+        color: Colors.transparent,
+        elevation: 0,
+        child: Padding(
+          padding: EdgeInsets.all(16),
+        ),
+      ),
+    );
+  }
+}
+
+class InputTextField extends StatelessWidget {
+  final String title;
+
+  const InputTextField({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.grey[600],
+          ),
+        ),
+        TextFormField(
+          decoration: InputDecoration(
+            isDense: true,
+            contentPadding: EdgeInsets.only(top: 8, bottom: 8),
+          ),
+          style: TextStyle(
+            fontSize: 14,
+          ),
+          onChanged: (value) {},
+        ),
+      ],
+    );
+  }
+}
+
+class ButtonSubmit extends StatelessWidget {
+  const ButtonSubmit({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      width: MediaQuery.of(context).size.width * 0.40,
+      height: 40,
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.amber[400],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(17),
+          ),
+          side: BorderSide(color: Colors.black),
+        ),
+        onPressed: () {},
+        child: Text(
+          "Simpan",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
   }
 }
