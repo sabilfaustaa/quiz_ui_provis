@@ -368,7 +368,6 @@ class InfoCard extends StatelessWidget {
         ),
         Container(
           width: 60,
-          // height: 36,
           child: Column(
             children: [
               Text(
