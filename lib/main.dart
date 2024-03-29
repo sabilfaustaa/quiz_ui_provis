@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_ui_provis/jawaban_1.dart';
+import 'package:quiz_ui_provis/jawaban_2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -99,6 +100,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // appBar: AppBar(
         //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // ),
-        body: Container());
+        body: Jawaban2Page());
   }
 }
